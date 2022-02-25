@@ -6,6 +6,10 @@ Admittedly we would probably break this ticket down into smaller chunks, but for
 Please time-box this exercise to no more than a few hours.   
 If there are Acceptance Criteria left after that time then have a think about + document how you would address them going forwards.
 
+Please do your solution in this project and submit it as either a:
+- Link to a fork of the project
+- Zip file containing the project
+
 ----
 
 # The Ticket
