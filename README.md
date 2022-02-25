@@ -10,7 +10,7 @@ If there are Acceptance Criteria left after that time then have a think about + 
 
 ## Context
 
-Your mission (if you choose to accept it) is to try and build a very simple version of the Content Management Service service.
+Your mission (if you choose to accept it) is to try and build a very simple version of the Content Management Service api.
 
 The Content Management Service is a tool internal staff use to create ordered lists of sports/competitions/events/markets etc which are shown on site.
 For example, the site may have a list of "popular sports", and during a weekend of football we may want that to be top of the list, and other sports lower down.
@@ -125,15 +125,16 @@ So that this application fits in with the rest of our tech stack, we need it to 
 - Built using Maven or Gradle
 - Runnable via Docker
 
-There is a Docker Compose file in this repository which runs the Sports Book API on http://localhost:8090.  
+There is a Docker Compose file in this repository which runs the Sports Book API on http://localhost:9001.  
 The API contains one POST endpoint which accepts a json payload in the form:
 ```json
 {
  "locale": "en_GB",
- "attachments": ["SPORT"] // An array of the types you want to be returned in the response
+ "attachments": ["SPORT"] // An array of the types you want to be returned in the response e.g. SPORT, COMPETITION
 }
 ```
 Note that the API only returns Sports with currently active competitions/events, so the sports in your response payload may be subtly different each request.
+Note the API also has an interactive Swagger Docs UI which you can experiment with at http://localhost:9001.
 
 For the second Acceptance Criteria you will need a way of persisting lists of Nodes.   
 In the team we use a MySQL database for this purpose, but feel free to use Mongo or some other database.  
