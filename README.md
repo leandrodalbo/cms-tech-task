@@ -147,9 +147,9 @@ There is a Docker Compose file in this repository which runs the Sports Book API
 The API has Swagger Docs if you wish to look around, and contains one POST endpoint which accepts a json payload in the form:
 ```json
 {
-  "attachments": ["SPORT"], // An array of the types you want to be returned in the response e.g. SPORT, COMPETITION
+  "attachments": ["SPORT", "COMPETITION"], // An array of the types you want to be returned in the response e.g. SPORT, COMPETITION
   "filter": { // Optional
-    "sportIds": ["a sport id"] // Optional
+    "sportIds": ["a sport id to filter by", "another sport id to filter by"] // Optional
   }
 }
 ```
