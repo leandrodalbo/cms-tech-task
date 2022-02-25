@@ -34,7 +34,7 @@ You will need to integrate with an external API to source the current available 
 **So that** I can provide front end teams with an ordered list of the most popular sports
 
 **As a** member of the front end web team  
-**I want** an API that exposes an ordered list of Sports by its list ID 
+**I want** an API that exposes an ordered list of Sports by its list ID  
 **So that** I can show customers the most relevant Sports to them at any moment of time
 
 ### Acceptance Criteria
