@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  catalogue-api:
+    image: edwardwflutter/cms-tech-task-api:latest
+    environment:
+      SERVER_PORT: 9001
+    ports:
+      - '9001:9001'
+
+# Uncomment the below if you get as far as requiring a database
+#  mysql:
+#    image: mysql:5.7.36
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: 'cms'
+#      MYSQL_USER: 'user'
+#      MYSQL_PASSWORD: 'password'
+#      MYSQL_ROOT_PASSWORD: 'password'
+#    ports:
+#      - '3306:3306'
+#    expose:
+#      - '3306'
+#    volumes:
+#      - mysql:/var/lib/mysql
+#
+#volumes:
+#  mysql:
