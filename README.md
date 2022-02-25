@@ -16,6 +16,9 @@ Your mission (if you choose to accept it) is to try and build a very simple vers
 
 The Content Management Service is a tool internal staff use to create ordered lists of sports/competitions/events/markets etc which are shown on site.  
 For example, the site may have a list of "popular sports", and during a weekend of football we may want that to be top of the list, and other sports lower down.  
+
+![img.png](img.png)
+
 Because from our point of view we don't differentiate between sports/competitions/events/markets/etc, we collectively refer to them as "nodes".
 
 You will need to integrate with an external API to source the current available Sports for this ticket.
@@ -23,7 +26,7 @@ You will need to integrate with an external API to source the current available 
 ### High Level Requirements
 
 **As a** member of the content management team  
-**I want** an API that allows see all Sports that are available in the Sports Book  
+**I want** an API that allows me to see all Sports that are available in the Sports Book  
 **So that** I can use them to create an ordered list of the most popular Sports
 
 **As a** member of the content management team  
@@ -31,7 +34,7 @@ You will need to integrate with an external API to source the current available 
 **So that** I can provide the customers with the most relevant Sports to them at any moment of time
 
 **As a** member of the front end web team  
-**I want** an API that exposes an ordered list of Sports  
+**I want** an API that exposes an ordered list of Sports by its list ID 
 **So that** I can show customers the most relevant Sports to them at any moment of time
 
 ### Acceptance Criteria
@@ -81,7 +84,7 @@ You will need to integrate with an external API to source the current available 
 **Then** I get a response body containing  
 ```json
 {
- "id": "the list id",
+ "id": "the list id", // e.g a UUID or some other unique string
  "name": "the list name",
  "nodes": [
   {
