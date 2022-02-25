@@ -39,10 +39,10 @@ You will need to integrate with an external API to source the current available 
 
 ### Acceptance Criteria
 
-##### Scenario: A user should be able to query a list of Sports
+##### Scenario: A user should be able to query all Sports in the Sports Book
 
-**Given** the CMS API is running  
 **Given** the Sports Book API is running  
+**Given** the CMS API is running  
 **When** I GET /nodes?type=SPORT  
 **Then** I get a response code 200 (OK)  
 **Then** I get a response body containing
@@ -58,8 +58,8 @@ You will need to integrate with an external API to source the current available 
 
 ##### Scenario: A user should be able to create an ordered list of Nodes
 
-**Given** the API is running  
 **Given** the Sports Book API is running  
+**Given** the CMS API is running  
 **Given** a Sport exists in the Sports Book with id S1  
 **Given** a Sport exists in the Sports Book with id S2  
 **When** I `POST /list` with payload
@@ -103,8 +103,8 @@ You will need to integrate with an external API to source the current available 
 
 ##### Scenario: A user should be able to retrieve an ordered list of Nodes
 
-**Given** the API is running  
 **Given** the Sports Book API is running  
+**Given** the CMS API is running  
 **Given** a Sport exists in the Sports Book with id S1  
 **Given** a Sport exists in the Sports Book with id S2  
 **Given** Sports S1 and S2 have been added to a list  
