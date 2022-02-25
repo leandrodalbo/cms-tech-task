@@ -148,7 +148,7 @@ The API has Swagger Docs if you wish to look around, and contains one POST endpo
 ```json
 {
   "attachments": ["SPORT"], // An array of the types you want to be returned in the response e.g. SPORT, COMPETITION
-  "filters": { // Optional
+  "filter": { // Optional
     "sportIds": ["a sport id"] // Optional
   }
 }
