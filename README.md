@@ -44,7 +44,7 @@ You will need to integrate with an external API to source the current available 
 **Given** the Sports Book API is running  
 **Given** the CMS API is running  
 **When** I GET /nodes?type=SPORT  
-**Then** I get a response code 200 (OK)  
+**Then** I get a response code 200 (Ok)  
 **Then** I get a response body containing
 ```json
 [
@@ -80,7 +80,7 @@ You will need to integrate with an external API to source the current available 
  ]
 }
 ```
-**Then** I get a response code 200 (OK)  
+**Then** I get a response code 201 (Created)  
 **Then** I get a response body containing  
 ```json
 {
@@ -109,7 +109,7 @@ You will need to integrate with an external API to source the current available 
 **Given** a Sport exists in the Sports Book with id S2  
 **Given** Sports S1 and S2 have been added to a list  
 **When** I `GET /list/{list-id}`  
-**Then** I get a response code 200 (OK)  
+**Then** I get a response code 200 (Ok)  
 **Then** I get a response body containing
 ```json
 {
