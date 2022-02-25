@@ -14,7 +14,7 @@ Please do your solution in this project and submit it as either a:
 
 # The Ticket
 
-### Context
+## Context
 
 Your mission (if you choose to accept it) is to try and build a very simple version of the Content Management Service api.
 
@@ -27,7 +27,7 @@ Because from our point of view we don't differentiate between sports/competition
 
 You will need to integrate with an external API to source the current available Sports for this ticket.
 
-### High Level Requirements
+## High Level Requirements
 
 **As a** member of the content management team  
 **I want** an API that allows me to see all Sports that are available in the Sports Book  
@@ -41,9 +41,9 @@ You will need to integrate with an external API to source the current available 
 **I want** an API that exposes an ordered list of Sports by its list ID  
 **So that** I can show customers the most relevant Sports to them at any moment of time
 
-### Acceptance Criteria
+## Acceptance Criteria
 
-##### Scenario: A user should be able to query all Sports in the Sports Book
+### Scenario: A user should be able to query all Sports in the Sports Book
 
 **Given** the Sports Book API is running  
 **Given** the CMS API is running  
@@ -60,7 +60,7 @@ You will need to integrate with an external API to source the current available 
 ]
 ```
 
-##### Scenario: A user should be able to create an ordered list of Nodes
+### Scenario: A user should be able to create an ordered list of Nodes
 
 **Given** the Sports Book API is running  
 **Given** the CMS API is running  
@@ -105,7 +105,7 @@ You will need to integrate with an external API to source the current available 
 }
 ```
 
-##### Scenario: A user should be able to retrieve an ordered list of Nodes
+### Scenario: A user should be able to retrieve an ordered list of Nodes
 
 **Given** the Sports Book API is running  
 **Given** the CMS API is running  
@@ -134,7 +134,7 @@ You will need to integrate with an external API to source the current available 
 }
 ```
 
-### Tech Elab
+## Tech Elab
 
 So that this application fits in with the rest of our tech stack, we need it to be:
 - A Spring Boot App
@@ -159,7 +159,7 @@ For the second Acceptance Criteria you will need a way of persisting lists of No
 In the team we use a MySQL database for this purpose, but feel free to use any other database type e.g. Mongo.  
 Ensure this database is set up to run in the docker compose file along with the Sports Book API.
 
-### Test Elab
+## Test Elab
 
 Ensure all code is well unit tested
 
