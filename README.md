@@ -31,7 +31,7 @@ You will need to integrate with an external API to source the current available 
 
 **As a** member of the content management team  
 **I want** an API that allows me to create ordered lists of sports  
-**So that** I can provide the customers with the most relevant Sports to them at any moment of time
+**So that** I can provide front end teams with an ordered list of the most popular sports
 
 **As a** member of the front end web team  
 **I want** an API that exposes an ordered list of Sports by its list ID 
