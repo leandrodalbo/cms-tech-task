@@ -153,7 +153,7 @@ The API has Swagger Docs if you wish to look around, and contains one POST endpo
   }
 }
 ```
-Note that the API only returns Sports/Competitions that are currently active, so the elements in your response payload may be subtly different for each request.
+**Note** that the API only returns Sports/Competitions that are **currently active**, so the elements in your response payload may be subtly different for each request.
 
 For the second Acceptance Criteria you will need a way of persisting lists of Nodes.   
 In the team we use a MySQL database for this purpose, but feel free to use any other database type e.g. Mongo.  
