@@ -11,3 +11,15 @@ services:
     image: mongo:4.4.6
     ports:
       - 27017:27017
+
+
+  content-managament-service:
+    image: content-management-api
+    depends_on:
+      - mongo-service
+      - catalogue-api
+    ports:
+      - 8080:8080
+    environment:
+      - MONGODB_HOST=mongo-service
+      - SPORTS_API_HOST=http://catalogue-api:9001
