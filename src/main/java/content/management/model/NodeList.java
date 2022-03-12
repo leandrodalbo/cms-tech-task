@@ -11,9 +11,7 @@ import java.util.List;
 public class NodeList {
 
     @Id
-    private String id;
-
-    private String name;
-
-    private List<Node> nodes;
+    String id;
+    String name;
+    List<Node> nodes;
 }

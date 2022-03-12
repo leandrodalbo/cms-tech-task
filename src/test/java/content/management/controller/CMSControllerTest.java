@@ -54,7 +54,7 @@ public class CMSControllerTest {
     }
 
     @Test
-    public void wilLQueryAllSports() throws Exception {
+    public void wilLGetAllSports() throws Exception {
         List<NodeDto> result = Collections.singletonList(new NodeDto("node0", "nodeName", "nodeType"));
 
         given(nodesQueryingService.getAllNodesOfATypeWithoutFilters(anyString())).
@@ -70,25 +70,25 @@ public class CMSControllerTest {
     }
 
     @Test
-    public void willAddANewList() throws Exception {
-        NodeList list = new NodeList("dddssf", "none", Arrays.asList(new Node("1001", "SPORT", 0)));
+    public void willAddAndSaveANewList() throws Exception {
+        OrderedNodeListDto dto = new OrderedNodeListDto("1ddddadg34ssf", "none", Collections.singletonList(new Node("1001", "SPORT", 0)));
 
         given(nodeListService.addList(any())).
-                willReturn(list);
+                willReturn(dto);
 
         MockHttpServletResponse res = mvc.perform(
                 post("/list").contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonData.write(list).getJson()))
+                        .content(jsonData.write(dto).getJson()))
                 .andReturn().getResponse();
 
         then(res.getStatus()).isEqualTo(HttpStatus.CREATED.value());
-        then(res.getContentAsString()).isEqualTo(jsonData.write(list).getJson());
+        then(res.getContentAsString()).isEqualTo(jsonData.write(dto).getJson());
 
     }
 
     @Test
-    public void willGetBadRequestWithInvalidNodes() throws Exception {
-        NodeList list = new NodeList("dddssf", "none", Arrays.asList(new Node("1001", "SPORT", 0)));
+    public void willGetBadRequestTryingToSaveInvalidNodesInAList() throws Exception {
+        NodeList list = new NodeList(null, "none", Collections.singletonList(new Node("1001", "SPORT", 0)));
 
         given(nodeListService.addList(any())).
                 willThrow(new InvalidNodesException());
@@ -117,8 +117,8 @@ public class CMSControllerTest {
     }
 
     @Test
-    public void willGetTheListInOrder() throws Exception {
-        OrderedNodeListDto dto = new OrderedNodeListDto("abcds", "noName", Arrays.asList(new Node("1001", "SPORT", 0), new Node("1002", "SPORT", 1)));
+    public void willGetAnExistingListInOrder() throws Exception {
+        OrderedNodeListDto dto = new OrderedNodeListDto("abada2112cds", "noName", Arrays.asList(new Node("1001", "SPORT", 0), new Node("1002", "SPORT", 1)));
 
         given(nodeListService.getListInOrder(any())).
                 willReturn(dto);

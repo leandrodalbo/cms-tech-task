@@ -8,14 +8,12 @@ import lombok.Setter;
 
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderedNodeListDto {
     private String id;
-
     private String name;
-
     private List<Node> nodes;
 }

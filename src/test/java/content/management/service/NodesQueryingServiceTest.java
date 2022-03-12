@@ -1,7 +1,6 @@
 package content.management.service;
 
 import content.management.dto.NodeDto;
-import org.json.JSONException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -53,7 +52,7 @@ public class NodesQueryingServiceTest {
     }
 
     @Test
-    public void willGetAListWillTheCompetitionsFromTheAPI() {
+    public void willGetAListWithAllTheCompetitionsFromTheAPI() {
 
         APIResponse responseBody = new APIResponse();
         responseBody.setCompetitions(Collections.singletonList(new APIResponseNode()));
@@ -70,7 +69,7 @@ public class NodesQueryingServiceTest {
     }
 
     @Test
-    public void willBeFalseIfTheNodeDoesNotExist() throws JSONException {
+    public void willBeFalseIfTheNodeDoesNotExist() {
         APIResponse response = new APIResponse();
         response.setCompetitions(null);
         response.setSports(null);
@@ -85,7 +84,7 @@ public class NodesQueryingServiceTest {
     }
 
     @Test
-    public void willBeTrueIfTheSportExists() throws JSONException {
+    public void willBeTrueIfTheSportExists() {
         APIResponse response = new APIResponse();
         response.setCompetitions(null);
         response.setSports(Collections.singletonList(new APIResponseNode()));
@@ -100,7 +99,7 @@ public class NodesQueryingServiceTest {
     }
 
     @Test
-    public void willGetAnEmptyListWithAnInvalidResponse() {
+    public void willGetAnEmptyListIfTheResponseIsNotValid() {
         when(template.postForEntity(anyString(), any(), any()))
                 .thenReturn(new ResponseEntity<>(
                         HttpStatus.BAD_REQUEST
@@ -112,7 +111,7 @@ public class NodesQueryingServiceTest {
     }
 
     @Test
-    public void willGetAnEmptyListWithAnInvalidNodeType() {
+    public void willGetAnEmptyListIfTheNodeTypeIsNotValid() {
         when(template.postForEntity(anyString(), any(), any()))
                 .thenReturn(new ResponseEntity<>(
                         HttpStatus.OK

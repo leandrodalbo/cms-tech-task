@@ -1,14 +1,10 @@
 package content.management.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Value;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
+@Value
 public class Node {
-    private String id;
-    private String type;
-    private Integer position;
+    String id;
+    String type;
+    Integer position;
 }

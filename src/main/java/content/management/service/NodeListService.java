@@ -17,40 +17,43 @@ import java.util.stream.Collectors;
 @Component
 public class NodeListService {
 
-    private final NodeListRepository repository;
-    private final NodesQueryingService queryingService;
+    private final NodeListRepository nodeListRepository;
+    private final NodesQueryingService nodesQueryingService;
 
     @Autowired
-    public NodeListService(NodeListRepository repository, NodesQueryingService queryingService) {
-        this.repository = repository;
-        this.queryingService = queryingService;
+    public NodeListService(NodeListRepository nodeListRepository, NodesQueryingService nodesQueryingService) {
+        this.nodeListRepository = nodeListRepository;
+        this.nodesQueryingService = nodesQueryingService;
     }
 
-    public NodeList addList(NodeList nodeList) throws InvalidNodesException {
+    public OrderedNodeListDto addList(NodeList nodeList) throws InvalidNodesException {
 
         if (!allNodesExist(nodeList.getNodes())) {
             throw new InvalidNodesException();
         }
 
-        return this.repository.save(nodeList);
+        NodeList savedList = this.nodeListRepository.save(nodeList);
+
+        return toOrderedNodeListDto(savedList);
     }
 
-    private boolean allNodesExist(List<Node> nodes) {
-        List<Node> invalidNodes = nodes.stream()
-                .filter(node -> !queryingService.nodeExists(node.getType(), node.getId()))
-                .collect(Collectors.toList());
-
-        return invalidNodes.isEmpty();
-    }
 
     public OrderedNodeListDto getListInOrder(String listId) throws NodeListNotFoundException {
-        Optional<NodeList> nodeList = repository.findById(listId);
+        Optional<NodeList> nodeList = nodeListRepository.findById(listId);
 
         if (nodeList.isEmpty()) {
             throw new NodeListNotFoundException();
         }
 
         return toOrderedNodeListDto(nodeList.get());
+    }
+
+    private boolean allNodesExist(List<Node> nodes) {
+        List<Node> invalidNodes = nodes.stream()
+                .filter(node -> !nodesQueryingService.nodeExists(node.getType(), node.getId()))
+                .collect(Collectors.toList());
+
+        return invalidNodes.isEmpty();
     }
 
     private OrderedNodeListDto toOrderedNodeListDto(NodeList nodeList) {

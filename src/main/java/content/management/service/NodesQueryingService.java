@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,27 +30,28 @@ public class NodesQueryingService {
     }
 
     public boolean nodeExists(String nodeType, String sportId) {
-        ResponseEntity<ApiObjectsWrapper.APIResponse> responseEntity = this.getNodes(Arrays.asList(nodeType), Optional.of(Arrays.asList(sportId)));
-        boolean sportsExists = responseEntity.getBody().getSports() != null;
+        ResponseEntity<ApiObjectsWrapper.APIResponse> responseEntity = this.getNodes(Collections.singletonList(nodeType), Optional.of(Collections.singletonList(sportId)));
+
+        boolean sportsExists = Objects.requireNonNull(responseEntity.getBody()).getSports() != null;
         boolean competitionsExists = responseEntity.getBody().getCompetitions() != null;
 
         return (responseEntity.getStatusCode().is2xxSuccessful() && (sportsExists || competitionsExists));
     }
 
     public List<NodeDto> getAllNodesOfATypeWithoutFilters(String nodeType) {
-        ResponseEntity<ApiObjectsWrapper.APIResponse> responseEntity = this.getNodes(Arrays.asList(nodeType), Optional.empty());
+        ResponseEntity<ApiObjectsWrapper.APIResponse> responseEntity = this.getNodes(Collections.singletonList(nodeType), Optional.empty());
 
         if (!responseEntity.getStatusCode().is2xxSuccessful()) {
             return Collections.emptyList();
         }
 
         if (nodeType.equals(NodeType.COMPETITION.getValue())) {
-            return toNodeList(responseEntity.getBody().getCompetitions(), nodeType);
+            return toNodeList(Objects.requireNonNull(responseEntity.getBody()).getCompetitions(), nodeType);
 
         }
 
         if (nodeType.equals(NodeType.SPORT.getValue())) {
-            return toNodeList(responseEntity.getBody().getSports(), nodeType);
+            return toNodeList(Objects.requireNonNull(responseEntity.getBody()).getSports(), nodeType);
         }
         return Collections.emptyList();
     }
@@ -60,12 +61,11 @@ public class NodesQueryingService {
 
         if (sportIds.isPresent()) {
             queryPayload.addFilter(sportIds.get());
-        }else {
+        } else {
             queryPayload.addFilter(Collections.emptyList());
         }
 
         return this.restTemplate.postForEntity(apiHost, queryPayload, ApiObjectsWrapper.APIResponse.class);
-
     }
 
     private List<NodeDto> toNodeList(List<ApiObjectsWrapper.APIResponseNode> responseNodes, String nodeType) {

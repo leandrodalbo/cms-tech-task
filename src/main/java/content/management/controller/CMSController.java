@@ -17,11 +17,11 @@ import java.util.List;
 public class CMSController {
 
     private final NodesQueryingService nodesQueryingService;
-    private final NodeListService listService;
+    private final NodeListService nodeListService;
 
     @Autowired
-    public CMSController(NodesQueryingService nodesQueryingService, NodeListService listService) {
-        this.listService = listService;
+    public CMSController(NodesQueryingService nodesQueryingService, NodeListService nodeListService) {
+        this.nodeListService = nodeListService;
         this.nodesQueryingService = nodesQueryingService;
     }
 
@@ -32,13 +32,12 @@ public class CMSController {
 
     @PostMapping("/list")
     @ResponseStatus(HttpStatus.CREATED)
-    public NodeList getAllNodes(@RequestBody NodeList nodeList) throws InvalidNodesException {
-        return listService.addList(nodeList);
+    public OrderedNodeListDto getAllNodes(@RequestBody NodeList nodeList) throws InvalidNodesException {
+        return nodeListService.addList(nodeList);
     }
 
     @GetMapping("/list/{list-id}")
     public OrderedNodeListDto getListWithNodesInOrder(@PathVariable("list-id") String listId) throws NodeListNotFoundException {
-        return listService.getListInOrder(listId);
+        return nodeListService.getListInOrder(listId);
     }
-
 }
